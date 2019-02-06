@@ -4,7 +4,8 @@ import classnames from "classnames";
 import "./todo-list-item.css";
 
 const TodoListItem = ({
-  label, onDeleted, onToggleImportant, onToggleDone, done, important
+  label, onDeleted, onToggleImportant,
+  onToggleDone, done, important
 }) => {
 
   let classNames = classnames({
