@@ -24,7 +24,7 @@ export default class TodoListItem extends Component {
   }
 
   onMarkImportant() {
-    this.setState(state => ({
+    this.setState((state) => ({
         important: !state.important
       })
     );

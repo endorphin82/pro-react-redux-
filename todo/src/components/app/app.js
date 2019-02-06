@@ -4,12 +4,16 @@ import AppHeader from "../app-header";
 import SearchPanel from "../search-panel";
 import TodoList from "../todo-list";
 import ItemStatusFilter from "../item-status-filter";
+// import AddEditTaskForm from "../add-edit-task-form";
+import ItemAddForm from "../item-add-form";
 
 import "./app.css";
 
 export default class App extends Component {
   constructor() {
     super();
+
+    this.maxId = 100;
 
     this.state = {
       todoData: [
@@ -27,14 +31,24 @@ export default class App extends Component {
 
       // [a, b, c, d, e]
       // [a, b,  , d, e]
-      const newArray = [
-    ...todoData.slice(0, idx),
-    ...todoData.slice(idx + 1)
-    ];
-
       return {
-        todoData: newArray
+        todoData: [
+          ...todoData.slice(0, idx),
+          ...todoData.slice(idx + 1)
+        ]
       };
+    });
+  };
+
+  addItem = (text) => {
+    const newItem = {
+      label: text,
+      important: false,
+      id: this.maxId++
+    };
+
+    this.setState(({ todoData }) => {
+      return { todoData: [...todoData, newItem] };
     });
   };
 
@@ -52,6 +66,8 @@ export default class App extends Component {
           todos={todoData}
           onDeleted={this.deleteItem}
         />
+        {/*<AddEditTaskForm />*/}
+        <ItemAddForm onItemAdded={this.addItem}/>
       </div>
     );
   }
