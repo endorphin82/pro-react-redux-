@@ -19,7 +19,6 @@ export default class ItemAddForm extends Component {
   };
 
   render() {
-    const { onItemAdded } = this.props;
     return (
       <form className="input-group item-add-form d-flex"
             onSubmit={this.onSubmit}
