@@ -47,8 +47,7 @@
 }
 
 .lds-css {
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
 }
 
 .lds-double-ring div {
