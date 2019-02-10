@@ -46,6 +46,11 @@
     position: relative;
 }
 
+.lds-css {
+    display: flex;
+    justify-content: center;
+}
+
 .lds-double-ring div {
     position: absolute;
     width: 160px;
