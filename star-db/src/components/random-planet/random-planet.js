@@ -9,13 +9,13 @@ import "./random-planet.css";
 export default class RandomPlanet extends Component {
   constructor() {
     super();
-    console.log("constructor()");
-    // this.updatePlanet();
-    setInterval(this.updatePlanet, 5000);
   }
 
   componentDidMount() {
     console.log("componentDidMount()");
+    console.log("constructor()");
+    this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 5000);
   }
 
   componentWillUnmount() {
