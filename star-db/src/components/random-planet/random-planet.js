@@ -7,11 +7,19 @@ import ErrorIndicator from "../error-indicator";
 import "./random-planet.css";
 
 export default class RandomPlanet extends Component {
-
   constructor() {
     super();
+    console.log("constructor()");
     // this.updatePlanet();
-    setInterval(this.updatePlanet, 1500);
+    setInterval(this.updatePlanet, 5000);
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount()");
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount()");
   }
 
   swapiService = new SwapiService();
@@ -46,6 +54,7 @@ export default class RandomPlanet extends Component {
   };
 
   render() {
+    console.log("render()");
 
     const { planet, loading, error } = this.state;
 
