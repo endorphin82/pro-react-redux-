@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./people-page.css";
 import ItemList from "../item-list";
 import PersonDetails from "../person-details";
-import ErrorIndicator from "../app/app";
+import ErrorIndicator from "../error-indicator";
 
 export default class PeoplePage extends Component {
   state = {
