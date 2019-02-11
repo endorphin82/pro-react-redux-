@@ -19,7 +19,7 @@ export default class RandomPlanet extends Component {
   }
 
   componentWillUnmount() {
-    console.log("componentWillUnmount()");
+    clearInterval(this.interval);
   }
 
   swapiService = new SwapiService();
