@@ -1,3 +1,3 @@
-import _app from './app';
+import app from './app';
 
-export default _app;
+export default app;
