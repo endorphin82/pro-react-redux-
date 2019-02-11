@@ -11,6 +11,12 @@ export default class RandomPlanet extends Component {
     super();
   }
 
+  state = {
+    planet: {},
+    loading: true,
+    error: false
+  };
+
   componentDidMount() {
     console.log("componentDidMount()");
     console.log("constructor()");
@@ -23,12 +29,6 @@ export default class RandomPlanet extends Component {
   }
 
   swapiService = new SwapiService();
-
-  state = {
-    planet: {},
-    loading: true,
-    error: false
-  };
 
   onPlanetLoaded = (planet) => {
     this.setState({
