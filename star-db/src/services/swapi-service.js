@@ -50,18 +50,18 @@ export default class SwapiService {
   };
 
   getPersonImage = ({id}) => {
-    return "not";
-    // return `${this._imageBase}/characters/${id}.jpg`
+    // return "not";
+    return `${this._imageBase}/characters/${id}.jpg`
   };
 
   getStarshipImage = ({id}) => {
-    return "not";
-    // return `${this._imageBase}/starships/${id}.jpg`
+    // return "not";
+    return `${this._imageBase}/starships/${id}.jpg`
   };
 
   getPlanetImage = ({id}) => {
-    return "not";
-    // return `${this._imageBase}/planets/${id}.jpg`
+    // return "not";
+    return `${this._imageBase}/planets/${id}.jpg`
   };
 
   _extractId = (item) => {
