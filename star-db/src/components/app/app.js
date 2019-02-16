@@ -7,6 +7,8 @@ import Row from "../row";
 
 import "./app.css";
 import SwapiService from "../../services/swapi-service";
+import DummySwapiService from "../../services/dummy-swapi-service";
+
 import ErrorBoundry from "../error-boundry";
 import {
   PersonList,
@@ -17,8 +19,11 @@ import {
   StarshipDetails
 } from "../sw-components";
 
+import { SwapiServiceProvider } from "../swapi-service-context";
+
 export default class App extends Component {
-  swapiService = new SwapiService();
+  // swapiService = new SwapiService();
+  swapiService = new DummySwapiService();
   state = {
     showRandomPlanet: true,
     hasError: false
@@ -53,29 +58,40 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <div className="stardb-app container">
-          <Header/>
-          <Row
-            left={
-              <PersonList/>
-            }
-            right={<PersonDetails itemId={11} />}
-          />
+        <SwapiServiceProvider value={this.swapiService}>
+          <div className="stardb-app container">
+            <ErrorBoundry>
+              <Header/>
+            </ErrorBoundry>
+            <ErrorBoundry>
+              <Row
+                left={
+                  <PersonList/>
+                }
+                right={<PersonDetails itemId={11}/>}
+              />
+            </ErrorBoundry>
 
-          <Row
-            left={
-              <PlanetList/>
-            }
-            right={<PlanetDetails itemId={5} />}
-          />
-          <Row
-            left={
-              <StarshipList/>
-            }
-            right={<StarshipDetails itemId={9} />}
-          />
+            <ErrorBoundry>
+              <Row
+                left={
+                  <PlanetList/>
+                }
+                right={<PlanetDetails itemId={5}/>}
+              />
+            </ErrorBoundry>
 
-        </div>
+            <ErrorBoundry>
+              <Row
+                left={
+                  <StarshipList/>
+                }
+                right={<StarshipDetails itemId={9}/>}
+              />
+            </ErrorBoundry>
+
+          </div>
+        </SwapiServiceProvider>
       </ErrorBoundry>
     );
   }
