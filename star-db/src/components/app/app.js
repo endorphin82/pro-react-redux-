@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
 import Header from "../header";
-import RandomPlanet from "../random-planet";
+// import RandomPlanet from "../random-planet";
 import ErrorIndicator from "../error-indicator";
 import Row from "../row";
 
 import "./app.css";
-import SwapiService from "../../services/swapi-service";
-// import DummySwapiService from "../../services/dummy-swapi-service";
+// import SwapiService from "../../services/swapi-service";
+import DummySwapiService from "../../services/dummy-swapi-service";
 
 import ErrorBoundry from "../error-boundry";
 import {
@@ -22,8 +22,8 @@ import {
 import { SwapiServiceProvider } from "../swapi-service-context";
 
 export default class App extends Component {
-  swapiService = new SwapiService();
-  // swapiService = new DummySwapiService();
+  // swapiService = new SwapiService();
+  swapiService = new DummySwapiService();
   state = {
     showRandomPlanet: true,
     hasError: false
@@ -47,14 +47,9 @@ export default class App extends Component {
     if (this.state.hasError) {
       return <ErrorIndicator/>;
     }
-    const planet = this.state.showRandomPlanet ?
-      <RandomPlanet/> :
-      null;
-    const {
-      getAllPeople, getAllPlanets,
-      getPerson, getStarship,
-      getPersonImage, getStarshipImage
-    } = this.swapiService;
+    // const planet = this.state.showRandomPlanet ?
+    //   <RandomPlanet/> :
+    //   null;
 
     return (
       <ErrorBoundry>
