@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Spinner from '../spinner';
+import Spinner from "../spinner";
 // import ErrorIndicator from '../error-indicator';
 // todo import ErrorIndicator from '../error-indicator';
 
@@ -11,7 +11,17 @@ const withData = (View) => {
       data: null
     };
 
+    componentDidUpdate(prevProps) {
+      if ( this.props.getData !== prevProps.getData ){
+        this.update();
+      }
+    }
+
     componentDidMount() {
+      this.update();
+    }
+
+    update() {
       this.props.getData()
         .then((data) => {
           this.setState({
@@ -24,10 +34,10 @@ const withData = (View) => {
       const { data } = this.state;
 
       if (!data) {
-        return <Spinner />;
+        return <Spinner/>;
       }
 
-      return <View {...this.props} data={data} />;
+      return <View {...this.props} data={data}/>;
     }
   };
 };

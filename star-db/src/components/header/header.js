@@ -1,8 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import './header.css';
+import "./header.css";
 
-const Header = () => {
+const Header = ({ onToggleService }) => {
+
   return (
     <div className="header d-flex">
       <h3>
@@ -21,6 +22,10 @@ const Header = () => {
           <a href="/">Starships</a>
         </li>
       </ul>
+      <button
+        onClick={onToggleService}
+        className="btn btn-primary btn-sm">Toggle service
+      </button>
     </div>
   );
 };

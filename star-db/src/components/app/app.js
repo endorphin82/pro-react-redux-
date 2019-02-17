@@ -6,7 +6,7 @@ import ErrorIndicator from "../error-indicator";
 import Row from "../row";
 
 import "./app.css";
-// import SwapiService from "../../services/swapi-service";
+import SwapiService from "../../services/swapi-service";
 import DummySwapiService from "../../services/dummy-swapi-service";
 
 import ErrorBoundry from "../error-boundry";
@@ -23,8 +23,8 @@ import { SwapiServiceProvider } from "../swapi-service-context";
 
 export default class App extends Component {
   // swapiService = new SwapiService();
-  swapiService = new DummySwapiService();
   state = {
+    swapiService: new DummySwapiService(),
     showRandomPlanet: true,
     hasError: false
   };
@@ -43,6 +43,19 @@ export default class App extends Component {
     });
   };
 
+  onToggleService = () => {
+    this.setState(({ swapiService }) => {
+
+      const Service = swapiService instanceof SwapiService ?
+        DummySwapiService : SwapiService;
+      console.log("Toggle", Service.name);
+      return {
+        swapiService: new Service()
+      };
+    });
+
+  };
+
   render() {
     if (this.state.hasError) {
       return <ErrorIndicator/>;
@@ -53,10 +66,10 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <SwapiServiceProvider value={this.swapiService}>
+        <SwapiServiceProvider value={this.state.swapiService}>
           <div className="stardb-app container">
             <ErrorBoundry>
-              <Header/>
+              <Header onToggleService={this.onToggleService}/>
             </ErrorBoundry>
             <ErrorBoundry>
               <Row
