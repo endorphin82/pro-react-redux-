@@ -1,51 +1,26 @@
 import React, { Component } from "react";
 
 import Header from "../header";
-// import RandomPlanet from "../random-planet";
+import RandomPlanet from "../random-planet";
 import ErrorIndicator from "../error-indicator";
-import Row from "../row";
+import { PeoplePage, PlanetsPage, StarshipsPage } from "../pages";
 
 import "./app.css";
 import SwapiService from "../../services/swapi-service";
 import DummySwapiService from "../../services/dummy-swapi-service";
 
 import ErrorBoundry from "../error-boundry";
-import {
-  PersonList,
-  PlanetList,
-  StarshipList,
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails
-} from "../sw-components";
 
 import { SwapiServiceProvider } from "../swapi-service-context";
 
 export default class App extends Component {
-  // swapiService = new SwapiService();
   state = {
-    swapiService: new DummySwapiService(),
-    showRandomPlanet: true,
+    swapiService: new SwapiService(),
     hasError: false
-  };
-
-  componentDidCatch(error, info) {
-    console.log("componentDidCatch()");
-    this.setState({ hasError: true });
-    console.log("Error", error, info);
-  }
-
-  toggleRandomPlanet = () => {
-    this.setState((state) => {
-      return {
-        showRandomPlanet: !state.showRandomPlanet
-      };
-    });
   };
 
   onToggleService = () => {
     this.setState(({ swapiService }) => {
-
       const Service = swapiService instanceof SwapiService ?
         DummySwapiService : SwapiService;
       console.log("Toggle", Service.name);
@@ -60,43 +35,17 @@ export default class App extends Component {
     if (this.state.hasError) {
       return <ErrorIndicator/>;
     }
-    // const planet = this.state.showRandomPlanet ?
-    //   <RandomPlanet/> :
-    //   null;
 
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
           <div className="stardb-app container">
-            <ErrorBoundry>
-              <Header onToggleService={this.onToggleService}/>
-            </ErrorBoundry>
-            <ErrorBoundry>
-              <Row
-                left={
-                  <PersonList/>
-                }
-                right={<PersonDetails itemId={11}/>}
-              />
-            </ErrorBoundry>
+            <Header onToggleService={this.onToggleService}/>
 
-            <ErrorBoundry>
-              <Row
-                left={
-                  <PlanetList/>
-                }
-                right={<PlanetDetails itemId={5}/>}
-              />
-            </ErrorBoundry>
-
-            <ErrorBoundry>
-              <Row
-                left={
-                  <StarshipList/>
-                }
-                right={<StarshipDetails itemId={9}/>}
-              />
-            </ErrorBoundry>
+            <RandomPlanet/>
+            <PeoplePage/>
+            <PlanetsPage/>
+            <StarshipsPage/>
 
           </div>
         </SwapiServiceProvider>
