@@ -42,7 +42,7 @@ export default class App extends Component {
           <div className="stardb-app container">
             <Header onToggleService={this.onToggleService}/>
 
-            <RandomPlanet updateInterval={20000}/>
+            <RandomPlanet updateInterval={20000} />
             <PeoplePage/>
             <PlanetsPage/>
             <StarshipsPage/>
