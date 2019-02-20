@@ -56,7 +56,7 @@ export default class ItemDetails extends Component {
     if (!item) {
       return <span>Select a item from a list</span>;
     }
-
+//todo spiner
     return (
       <div className="item-details card">
         <img className="item-image"
