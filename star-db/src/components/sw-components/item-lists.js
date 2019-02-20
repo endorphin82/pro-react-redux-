@@ -34,7 +34,6 @@ const PlanetList = compose(
   withChildFunction(renderName)
 )(ItemList);
 
-
 const StarshipList = compose(
   withSwapiService(mapStarshipMethodsToProps),
   withData,
