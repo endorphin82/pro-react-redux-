@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 
 import Header from "../header";
 import RandomPlanet from "../random-planet";
@@ -28,7 +30,6 @@ export default class App extends Component {
         swapiService: new Service()
       };
     });
-
   };
 
   render() {
@@ -39,15 +40,17 @@ export default class App extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
-          <div className="stardb-app container">
-            <Header onToggleService={this.onToggleService}/>
+          <Router>
+            <div className="stardb-app container">
+              <Header onToggleService={this.onToggleService}/>
+              <RandomPlanet/>
+              
+              <Route path="/people" component={PeoplePage} />
+              <Route path="/planets" component={PlanetsPage} />
+              <Route path="/starships" component={StarshipsPage} />
 
-            <RandomPlanet updateInterval={20000} />
-            <PeoplePage/>
-            <PlanetsPage/>
-            <StarshipsPage/>
-
-          </div>
+            </div>
+          </Router>
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
