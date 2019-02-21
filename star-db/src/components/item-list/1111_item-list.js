@@ -17,7 +17,7 @@ export default class ItemList extends Component {
           itemList
         });
       });
-    //todo .catch()
+    //.catch()
   }
 
   renderItems(arr) {

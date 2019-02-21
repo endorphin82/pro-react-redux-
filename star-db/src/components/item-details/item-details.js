@@ -36,6 +36,7 @@ export default class ItemDetails extends Component {
   }
 
   updateItem() {
+    // todo this.setState({ loading: true });
     const { itemId, getData, getImageUrl } = this.props;
     if (!itemId) {
       return;
