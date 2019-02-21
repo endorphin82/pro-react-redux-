@@ -44,7 +44,8 @@ export default class App extends Component {
             <div className="stardb-app container">
               <Header onToggleService={this.onToggleService}/>
               <RandomPlanet/>
-              
+
+              <Route exact path="/" render={() => <h2>Welcome to StarDB</h2>}/>
               <Route path="/people" component={PeoplePage} />
               <Route path="/planets" component={PlanetsPage} />
               <Route path="/starships" component={StarshipsPage} />
