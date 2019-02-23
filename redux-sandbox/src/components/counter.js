@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import "./counter.css";
 
 const Counter = ({ counter, inc, dec, rnd }) => {
   return (
-    <div className="jumbotron">
+    <div className="jumbotron counter">
       <h2 id="counter">{counter}</h2>
       <button
         onClick={dec}
@@ -20,4 +23,10 @@ const Counter = ({ counter, inc, dec, rnd }) => {
   );
 };
 
-export default Counter;
+const mapStateToProps = (state) => ({
+  counter: state
+});
+
+export default connect(
+mapStateToProps,
+)(Counter);
