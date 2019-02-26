@@ -17,8 +17,19 @@ const booksError = (error) => {
     payload: error
   };
 };
+
 export const bookAddedToCart = (bookId) => ({
   type: "BOOK_ADDED_TO_CART",
+  payload: bookId
+});
+
+export const bookRemovedFromCart = (bookId) => ({
+  type: "BOOK_REMOVED_FROM_CART",
+  payload: bookId
+});
+
+export const allBookRemovedFromCart = (bookId) => ({
+  type: "ALL_BOOKS_REMOVED_FROM_CART",
   payload: bookId
 });
 
